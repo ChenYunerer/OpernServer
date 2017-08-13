@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.opern.dao.OpernInfoDao">
+    <select id="getAllOpernInfo" resultType="com.yun.opern.model.OpernInfo">
+        SELECT *
+        FROM
+            tbl_operninfo
+    </select>
+
+    <select id="getPopularOpernInfo" resultType="com.yun.opern.model.OpernInfo">
+        SELECT *
+        FROM
+            tbl_operninfo
+        ORDER BY
+            views DESC
+        LIMIT #{0}, #{1}
+    </select>
+
+    <select id="searchOpernInfo" resultType="com.yun.opern.model.OpernInfo">
+        <bind name="patten" value="'%' + _parameter.searchParameter + '%'"/>
+        SELECT
+        *
+        FROM
+        tbl_operninfo
+        WHERE
+        title LIKE #{patten} OR songAuthor LIKE #{patten} OR wordAuthor LIKE #{patten} OR singer LIKE #{patten}
+        ORDER BY
+        views DESC
+        LIMIT #{dataStart}, #{dataEnd}
+    </select>
+</mapper>

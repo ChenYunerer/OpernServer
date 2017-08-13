@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <!-- 输出到控制台 -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss} [%p] %m [%l]%n" />
+        </layout>
+    </appender>
+
+    <!-- 输出到日志文件 -->
+    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+        <!-- <param name="file" value="/home/tomcat/like/log/like_server" />-->
+        <param name="file" value="/mnt/log/tomcat80/2017/file/like_server" />
+        <param name="DatePattern" value="_yyyy-MM-dd'.log'" />
+        <param name="append" value="true" />
+        <param name="threshold" value="debug" />
+        <!-- <param name="maxFileSize" value="10MB" />-->
+        <!-- <param name="maxBackupIndex" value="10" />-->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss} [%p] %m [%l]%n" />
+        </layout>
+    </appender>
+
+    <!-- 屏蔽spring -->
+    <logger name="org.springframework">
+        <level value="info" />
+    </logger>
+    <logger name="org.mybatis">
+        <level value="info" />
+    </logger>
+
+    <!-- 根logger的设置 -->
+    <root>
+        <priority value="debug" />
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+    </root>
+
+</log4j:configuration>
