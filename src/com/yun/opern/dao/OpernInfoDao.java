@@ -2,6 +2,7 @@ package com.yun.opern.dao;
 
 
 import com.yun.opern.model.OpernInfo;
+import com.yun.opern.model.opern.BaseOpernInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,8 @@ public interface OpernInfoDao {
 
     ArrayList<OpernInfo> getAllOpernInfo();
 
-    ArrayList<OpernInfo> getPopularOpernInfo(int dataStart, int dataEnd);
+    ArrayList<BaseOpernInfo> getPopularOpernInfo(int dataStart, int dataEnd);
 
-    ArrayList<OpernInfo> searchOpernInfo(@Param("searchParameter") String searchParameter, @Param("dataStart") int dataStart, @Param("dataEnd") int dataEnd);
+    ArrayList<BaseOpernInfo> searchOpernInfo(@Param("searchParameter") String searchParameter);
 
 }

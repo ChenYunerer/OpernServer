@@ -8,18 +8,28 @@
             tbl_operninfo
     </select>
 
-    <select id="getPopularOpernInfo" resultType="com.yun.opern.model.OpernInfo">
-        SELECT *
-        FROM
-            tbl_operninfo
-        ORDER BY
-            views DESC
-        LIMIT #{0}, #{1}
+    <select id="getPopularOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
+        SELECT
+            A.*,
+            B.opernIndex,
+            B.opernTitle,
+            B.opernImg
+        FROM (SELECT *
+              FROM
+                  tbl_operninfo
+              ORDER BY
+                  views DESC
+              LIMIT #{0}, #{1}) A INNER JOIN tbl_opernimginfo B ON A.id = B.opernId
+        ORDER BY A.views DESC, B.opernIndex ASC
     </select>
 
-    <select id="searchOpernInfo" resultType="com.yun.opern.model.OpernInfo">
+    <select id="searchOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
         <bind name="patten" value="'%' + _parameter.searchParameter + '%'"/>
         SELECT
+        A.*,
+        B.opernIndex,
+        B.opernTitle,
+        B.opernImg from (SELECT
         *
         FROM
         tbl_operninfo
@@ -27,6 +37,7 @@
         title LIKE #{patten} OR songAuthor LIKE #{patten} OR wordAuthor LIKE #{patten} OR singer LIKE #{patten}
         ORDER BY
         views DESC
-        LIMIT #{dataStart}, #{dataEnd}
+        LIMIT 50) A inner join tbl_opernimginfo B ON A.id = B.opernId
+        ORDER BY A.views DESC , B.opernIndex ASC
     </select>
 </mapper>

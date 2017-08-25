@@ -1,9 +1,11 @@
-package com.yun.opern.model;
+package com.yun.opern.model.opern;
 
-import java.io.Serializable;
+import com.yun.opern.model.OpernImgInfo;
+import com.yun.opern.model.OpernInfo;
+
 import java.util.ArrayList;
 
-public class OpernInfo implements Serializable{
+public class BaseOpernInfo {
     private int id;
     private String title = "";
     private String wordAuthor = "";
@@ -15,8 +17,39 @@ public class OpernInfo implements Serializable{
     private String origin = "";
     private int views;
     private String html = "";
-    private ArrayList<OpernImgInfo> imgs;
     private String dataOrigin = "";
+
+    private int opernIndex;
+    private String opernTitle;
+    private String opernImg;
+
+    public OpernInfo getOpernInfo(){
+        OpernInfo opernInfo = new OpernInfo();
+        opernInfo.setId(this.id);
+        opernInfo.setTitle(this.title);
+        opernInfo.setWordAuthor(this.wordAuthor);
+        opernInfo.setSongAuthor(this.songAuthor);
+        opernInfo.setSinger(this.singer);
+        opernInfo.setFormat(this.format);
+        opernInfo.setUploadUserName(this.uploadUserName);
+        opernInfo.setUploadDateTime(this.uploadDateTime);
+        opernInfo.setOrigin(this.origin);
+        opernInfo.setViews(this.views);
+        opernInfo.setHtml(this.html);
+        opernInfo.setDataOrigin(this.dataOrigin);
+        opernInfo.setImgs(new ArrayList<>());
+        return opernInfo;
+    }
+
+    public OpernImgInfo getOpernImgInfo(){
+        OpernImgInfo opernImgInfo = new OpernImgInfo();
+        opernImgInfo.setId(this.id + "_" + this.opernIndex);
+        opernImgInfo.setOpernId(this.id);
+        opernImgInfo.setOpernIndex(this.opernIndex);
+        opernImgInfo.setOpernTitle(this.title);
+        opernImgInfo.setOpernImg(this.opernImg);
+        return opernImgInfo;
+    }
 
     public int getId() {
         return id;
@@ -106,14 +139,6 @@ public class OpernInfo implements Serializable{
         this.html = html;
     }
 
-    public ArrayList<OpernImgInfo> getImgs() {
-        return imgs;
-    }
-
-    public void setImgs(ArrayList<OpernImgInfo> imgs) {
-        this.imgs = imgs;
-    }
-
     public String getDataOrigin() {
         return dataOrigin;
     }
@@ -122,30 +147,27 @@ public class OpernInfo implements Serializable{
         this.dataOrigin = dataOrigin;
     }
 
-    @Override
-    public String toString() {
-        return "OpernInfo{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", wordAuthor='" + wordAuthor + '\'' +
-                ", songAuthor='" + songAuthor + '\'' +
-                ", singer='" + singer + '\'' +
-                ", format='" + format + '\'' +
-                ", uploadUserName='" + uploadUserName + '\'' +
-                ", uploadDateTime='" + uploadDateTime + '\'' +
-                ", origin='" + origin + '\'' +
-                ", views=" + views +
-                ", html='" + html + '\'' +
-                ", imgs=" + imgs +
-                ", dataOrigin='" + dataOrigin + '\'' +
-                '}';
+    public int getOpernIndex() {
+        return opernIndex;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof OpernInfo){
-            return ((OpernInfo) obj).getId() == this.id;
-        }
-        return super.equals(obj);
+    public void setOpernIndex(int opernIndex) {
+        this.opernIndex = opernIndex;
+    }
+
+    public String getOpernTitle() {
+        return opernTitle;
+    }
+
+    public void setOpernTitle(String opernTitle) {
+        this.opernTitle = opernTitle;
+    }
+
+    public String getOpernImg() {
+        return opernImg;
+    }
+
+    public void setOpernImg(String opernImg) {
+        this.opernImg = opernImg;
     }
 }
