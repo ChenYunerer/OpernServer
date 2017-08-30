@@ -6,6 +6,8 @@ package com.yun.opern.model;
 public class BaseResponse<T> {
     public static final int RETURN_SUCCESS = 0;
     public static final int RETURN_FAIL = -1;
+    public static final String SUCCESS_STRING = "操作成功";
+    public static final String FAIL_STRING = "操作失败";
 
     protected int code = RETURN_SUCCESS;
     protected String message = "";

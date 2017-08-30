@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.opern.dao.CollectionInfoDao">
+
+    <insert id="addCollectionInfo">
+        INSERT INTO tbl_collectioninfo (userId, opernId, delFlg, updateDataTime)
+        VALUES (#{userId}, #{opernId}, '0', now())
+    </insert>
+
+    <update id="removeCollectionInfo">
+        UPDATE tbl_collectioninfo
+        SET delFlg = '1', updateDataTime = now()
+        WHERE userId = #{userId} AND opernId = #{opernId} AND delFlg = '0'
+    </update>
+
+    <select id="getUserAllCollectionInfo" resultType="com.yun.opern.model.collection.CollectionInfo">
+        SELECT *
+        FROM tbl_collectioninfo
+        WHERE userId = #{userId} AND delFlg = '0'
+        ORDER BY updateDataTime DESC
+    </select>
+
+    <select id="getUserCollectionInfo" resultType="com.yun.opern.model.collection.CollectionInfo">
+        SELECT *
+        FROM tbl_collectioninfo
+        WHERE userId = #{userId} AND opernId = #{opernId} AND delFlg = '0'
+        LIMIT 1
+    </select>
+
+    <select id="getCollectionOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
+        SELECT
+            A.*,
+            B.opernIndex,
+            B.opernTitle,
+            B.opernImg
+        FROM (SELECT *
+              FROM
+                  tbl_operninfo
+                  INNER JOIN tbl_collectioninfo ON tbl_operninfo.id = tbl_collectioninfo.opernId
+              WHERE
+                  userId = #{userId} AND delFlg = '0') A INNER JOIN tbl_opernimginfo B ON A.id = B.opernId
+        ORDER BY A.updateDataTime DESC , A.views DESC, B.opernIndex ASC
+    </select>
+
+</mapper>

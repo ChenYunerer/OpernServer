@@ -83,7 +83,7 @@ public class OpernInfoServiceImpl implements OpernInfoService {
     /**
      * 通过baseoperninfolist获取operninfolist
      */
-    public ArrayList<OpernInfo> getOpernInfoListFromBaseOpernInfo(ArrayList<BaseOpernInfo> baseOpernInfos){
+    public static ArrayList<OpernInfo> getOpernInfoListFromBaseOpernInfo(ArrayList<BaseOpernInfo> baseOpernInfos){
         ArrayList<OpernInfo> opernInfoArrayList = new ArrayList<>();
         for(BaseOpernInfo info : baseOpernInfos){
             OpernInfo opernInfo = info.getOpernInfo();
