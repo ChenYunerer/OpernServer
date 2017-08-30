@@ -13,7 +13,7 @@
     <!-- 输出到日志文件 -->
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
         <!-- <param name="file" value="/home/tomcat/like/log/like_server" />-->
-        <param name="file" value="/mnt/log/tomcat80/2017/file/like_server" />
+        <param name="file" value="/mnt/opern_server_log" />
         <param name="DatePattern" value="_yyyy-MM-dd'.log'" />
         <param name="append" value="true" />
         <param name="threshold" value="debug" />

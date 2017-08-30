@@ -4,7 +4,7 @@
 <mapper namespace="com.yun.opern.dao.CollectionInfoDao">
 
     <insert id="addCollectionInfo">
-        INSERT INTO tbl_collectioninfo (userId, opernId, delFlg, updateDataTime)
+        REPLACE INTO tbl_collectioninfo (userId, opernId, delFlg, updateDataTime)
         VALUES (#{userId}, #{opernId}, '0', now())
     </insert>
 
