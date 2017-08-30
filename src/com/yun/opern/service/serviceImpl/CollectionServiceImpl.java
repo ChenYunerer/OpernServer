@@ -31,7 +31,7 @@ public class CollectionServiceImpl implements CollectionService{
         BaseResponse response = new BaseResponse();
         int count = collectionInfoDao.addCollectionInfo(request.getUserId(), request.getOpernId());
         response.setCode(count == 0 ? BaseResponse.RETURN_FAIL : BaseResponse.RETURN_SUCCESS);
-        response.setMessage(count == 0 ? BaseResponse.FAIL_STRING : BaseResponse.SUCCESS_STRING);
+        response.setMessage(count == 0 ? "添加收藏失败" : "添加收藏成功");
         return response;
     }
 
@@ -40,7 +40,7 @@ public class CollectionServiceImpl implements CollectionService{
         BaseResponse response = new BaseResponse();
         int count = collectionInfoDao.removeCollectionInfo(request.getUserId(), request.getOpernId());
         response.setCode(count == 0 ? BaseResponse.RETURN_FAIL : BaseResponse.RETURN_SUCCESS);
-        response.setMessage(count == 0 ? BaseResponse.FAIL_STRING : BaseResponse.SUCCESS_STRING);
+        response.setMessage(count == 0 ? "移除收藏失败" : "移除收藏成功");
         return response;
     }
 
