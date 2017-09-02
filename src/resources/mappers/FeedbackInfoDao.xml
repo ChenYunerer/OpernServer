@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.opern.dao.FeedbackInfoDao">
+
+    <insert id="insertFeedbackInfo">
+        INSERT
+        INTO tbl_feedbackinfo (userId, feedbackMessage, feedbackDateTime, communicateFlg, delFlg)
+        VALUES (#{userId}, #{feedbackMessage}, now(), '0', '0');
+    </insert>
+
+    <select id="selectUserAllFeedbackInfo" resultType="com.yun.opern.model.feedback.FeedbackInfo">
+        SELECT *
+        FROM tbl_feedbackinfo
+        WHERE delFlg = '0' AND userId = #{userId}
+        ORDER BY feedbackDateTime DESC
+    </select>
+
+</mapper>
