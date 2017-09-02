@@ -13,7 +13,7 @@
         SELECT *
         FROM tbl_feedbackinfo
         WHERE delFlg = '0' AND userId = #{userId}
-        ORDER BY feedbackDateTime DESC
+        ORDER BY feedbackDateTime
     </select>
 
 </mapper>
