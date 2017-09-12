@@ -18,7 +18,9 @@ public class BaseOpernInfo {
     private int views;
     private String html = "";
     private String dataOrigin = "";
-
+    private String categoryOne = "";
+    private String categoryTwo = "";
+    private String categoryThree = "";
     private int opernIndex;
     private String opernTitle;
     private String opernImg;
@@ -38,6 +40,9 @@ public class BaseOpernInfo {
         opernInfo.setHtml(this.html);
         opernInfo.setDataOrigin(this.dataOrigin);
         opernInfo.setImgs(new ArrayList<>());
+        opernInfo.setCategoryOne(this.categoryOne);
+        opernInfo.setCategoryTwo(this.categoryTwo);
+        opernInfo.setCategoryThree(this.categoryThree);
         return opernInfo;
     }
 
@@ -169,5 +174,29 @@ public class BaseOpernInfo {
 
     public void setOpernImg(String opernImg) {
         this.opernImg = opernImg;
+    }
+
+    public String getCategoryOne() {
+        return categoryOne;
+    }
+
+    public void setCategoryOne(String categoryOne) {
+        this.categoryOne = categoryOne;
+    }
+
+    public String getCategoryTwo() {
+        return categoryTwo;
+    }
+
+    public void setCategoryTwo(String categoryTwo) {
+        this.categoryTwo = categoryTwo;
+    }
+
+    public String getCategoryThree() {
+        return categoryThree;
+    }
+
+    public void setCategoryThree(String categoryThree) {
+        this.categoryThree = categoryThree;
     }
 }
