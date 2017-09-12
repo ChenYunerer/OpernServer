@@ -34,7 +34,7 @@
             B.opernIndex,
             B.opernTitle,
             B.opernImg
-        FROM (SELECT *
+        FROM (SELECT tbl_operninfo.*
               FROM
                   tbl_operninfo
                   INNER JOIN tbl_collectioninfo ON tbl_operninfo.id = tbl_collectioninfo.opernId
