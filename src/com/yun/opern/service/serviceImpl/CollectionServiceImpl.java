@@ -1,5 +1,6 @@
 package com.yun.opern.service.serviceImpl;
 
+import com.yun.opern.common.OpernUtil;
 import com.yun.opern.dao.CollectionInfoDao;
 import com.yun.opern.model.BaseResponse;
 import com.yun.opern.model.OpernInfo;
@@ -58,7 +59,7 @@ public class CollectionServiceImpl implements CollectionService{
     public BaseResponse getCollectionOpern(GetCollectionOpernRequest request) {
         BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
         ArrayList<BaseOpernInfo> baseOpernInfos = collectionInfoDao.getCollectionOpernInfo(request.getUserId());
-        ArrayList<OpernInfo> opernInfoArrayList = OpernInfoServiceImpl.getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
+        ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
         response.setCode(BaseResponse.RETURN_SUCCESS);
         response.setMessage(BaseResponse.SUCCESS_STRING);
         response.setData(opernInfoArrayList);

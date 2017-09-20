@@ -18,6 +18,8 @@ public interface OpernInfoDao {
 
     ArrayList<BaseOpernInfo> getPopularOpernInfo(int dataStart, int dataEnd);
 
+    ArrayList<BaseOpernInfo> getOpernInfoByCategory(@Param("categoryOne") String categoryOne, @Param("categoryTwo") String categoryTwo, @Param("dataStart") int dataStart, @Param("dataEnd") int dataEnd);
+
     ArrayList<BaseOpernInfo> searchOpernInfo(@Param("searchParameter") String searchParameter);
 
 }

@@ -23,6 +23,29 @@
         ORDER BY A.views DESC, B.opernIndex ASC
     </select>
 
+    <select id="getOpernInfoByCategory" resultType="com.yun.opern.model.opern.BaseOpernInfo">
+        SELECT
+            A.*,
+            B.opernIndex,
+            B.opernTitle,
+            B.opernImg
+        FROM (SELECT *
+              FROM
+                  tbl_operninfo
+              WHERE
+                  deleteFlage = '0'
+                  <if test="categoryOne != null">
+                      AND categoryOne = #{categoryOne}
+                  </if>
+                  <if test="categoryTwo != null">
+                      AND categoryTwo = #{categoryTwo}
+                  </if>
+              ORDER BY
+                  views DESC
+              LIMIT #{dataStart}, #{dataEnd}) A INNER JOIN tbl_opernimginfo B ON A.id = B.opernId
+        ORDER BY A.views DESC, B.opernIndex ASC
+    </select>
+
     <select id="searchOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
         <bind name="patten" value="'%' + _parameter.searchParameter + '%'"/>
         SELECT

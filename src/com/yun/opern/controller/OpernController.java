@@ -4,6 +4,7 @@ package com.yun.opern.controller;
 import com.yun.opern.model.BaseResponse;
 import com.yun.opern.model.OpernInfo;
 import com.yun.opern.model.opern.GetPopularOpernInfoRequest;
+import com.yun.opern.model.opern.SearchOpernInfoByCategoryRequest;
 import com.yun.opern.model.opern.SearchOpernInfoRequest;
 import com.yun.opern.service.OpernInfoService;
 import org.slf4j.Logger;
@@ -51,6 +52,24 @@ public class OpernController {
 
         try {
             response = opernInfoService.getPopularOpernInfo(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(BaseResponse.RETURN_FAIL);
+            response.setMessage(e.getMessage());
+        }
+
+        logger.info(methodName + "--end");
+        return response;
+    }
+
+    @RequestMapping(value = "/searchOpernInfoByCategory", method = RequestMethod.GET)
+    public BaseResponse searchOpernInfoByCategory(SearchOpernInfoByCategoryRequest request) {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        logger.info(methodName + "--start");
+        BaseResponse response = new BaseResponse();
+
+        try {
+            response = opernInfoService.searchOpernInfoByCategory(request);
         } catch (Exception e) {
             e.printStackTrace();
             response.setCode(BaseResponse.RETURN_FAIL);

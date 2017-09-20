@@ -1,5 +1,6 @@
 package com.yun.opern.service.serviceImpl;
 
+import com.yun.opern.common.OpernUtil;
 import com.yun.opern.dao.OpernImgInfoDao;
 import com.yun.opern.dao.OpernInfoDao;
 import com.yun.opern.model.BaseResponse;
@@ -7,6 +8,7 @@ import com.yun.opern.model.OpernImgInfo;
 import com.yun.opern.model.OpernInfo;
 import com.yun.opern.model.opern.BaseOpernInfo;
 import com.yun.opern.model.opern.GetPopularOpernInfoRequest;
+import com.yun.opern.model.opern.SearchOpernInfoByCategoryRequest;
 import com.yun.opern.model.opern.SearchOpernInfoRequest;
 import com.yun.opern.service.OpernInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +59,25 @@ public class OpernInfoServiceImpl implements OpernInfoService {
         int dataEnd = dataStart + request.getNumPerPage();
         BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
         ArrayList<BaseOpernInfo> baseOpernInfos = opernInfoDao.getPopularOpernInfo(dataStart, dataEnd);
-        ArrayList<OpernInfo> opernInfoArrayList = getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
+        ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
+        response.setCode(BaseResponse.RETURN_SUCCESS);
+        response.setMessage("请求数据成功");
+        response.setData(opernInfoArrayList);
+        return response;
+    }
+
+    /**
+     * 通过类目获取曲谱信息（按照浏览量排序，分页）
+     * @param request
+     * @return
+     */
+    @Override
+    public BaseResponse searchOpernInfoByCategory(SearchOpernInfoByCategoryRequest request) {
+        int dataStart = request.getIndex() * request.getNumPerPage();
+        int dataEnd = dataStart + request.getNumPerPage();
+        BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
+        ArrayList<BaseOpernInfo> baseOpernInfos = opernInfoDao.getOpernInfoByCategory(request.getCategoryOne(), request.getCategoryTwo(), dataStart, dataEnd);
+        ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
         response.setCode(BaseResponse.RETURN_SUCCESS);
         response.setMessage("请求数据成功");
         response.setData(opernInfoArrayList);
@@ -73,30 +93,11 @@ public class OpernInfoServiceImpl implements OpernInfoService {
     public BaseResponse searchOpernInfo(SearchOpernInfoRequest request) {
         BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
         ArrayList<BaseOpernInfo> baseOpernInfos = opernInfoDao.searchOpernInfo(request.getSearchParameter());
-        ArrayList<OpernInfo> opernInfoArrayList = getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
+        ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
         response.setCode(BaseResponse.RETURN_SUCCESS);
         response.setMessage("请求数据成功");
         response.setData(opernInfoArrayList);
         return response;
-    }
-
-    /**
-     * 通过baseoperninfolist获取operninfolist
-     */
-    public static ArrayList<OpernInfo> getOpernInfoListFromBaseOpernInfo(ArrayList<BaseOpernInfo> baseOpernInfos){
-        ArrayList<OpernInfo> opernInfoArrayList = new ArrayList<>();
-        for(BaseOpernInfo info : baseOpernInfos){
-            OpernInfo opernInfo = info.getOpernInfo();
-            OpernImgInfo opernImgInfo = info.getOpernImgInfo();
-            int index = opernInfoArrayList.indexOf(opernInfo);
-            if(index == -1){
-                opernInfo.getImgs().add(opernImgInfo);
-                opernInfoArrayList.add(opernInfo);
-            }else {
-                opernInfoArrayList.get(index).getImgs().add(opernImgInfo);
-            }
-        }
-        return opernInfoArrayList;
     }
 
 
