@@ -21,4 +21,8 @@ public interface OpernInfoService {
 
     BaseResponse searchOpernInfo(SearchOpernInfoRequest request);
 
+    BaseResponse latestUpdateTime();
+
+    BaseResponse latestUpdateOpernInfo();
+
 }

@@ -24,6 +24,7 @@ public class BaseOpernInfo {
     private int opernIndex;
     private String opernTitle;
     private String opernImg;
+    private String opernOSSImg;
 
     public OpernInfo getOpernInfo(){
         OpernInfo opernInfo = new OpernInfo();
@@ -53,6 +54,7 @@ public class BaseOpernInfo {
         opernImgInfo.setOpernIndex(this.opernIndex);
         opernImgInfo.setOpernTitle(this.title);
         opernImgInfo.setOpernImg(this.opernImg);
+        opernImgInfo.setOpernOSSImg(this.opernOSSImg);
         return opernImgInfo;
     }
 
@@ -198,5 +200,13 @@ public class BaseOpernInfo {
 
     public void setCategoryThree(String categoryThree) {
         this.categoryThree = categoryThree;
+    }
+
+    public String getOpernOSSImg() {
+        return opernOSSImg;
+    }
+
+    public void setOpernOSSImg(String opernOSSImg) {
+        this.opernOSSImg = opernOSSImg;
     }
 }

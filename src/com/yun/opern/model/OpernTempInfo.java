@@ -3,9 +3,9 @@ package com.yun.opern.model;
 public class OpernTempInfo {
     private String htmlUrl;
     private String title;
-    private String maker;
-    private String author;
-    private String singer;
+    private String insertdatatime;
+    private String updatedatatime;
+    private String deleteflage;
 
     public String getHtmlUrl() {
         return htmlUrl;
@@ -23,38 +23,27 @@ public class OpernTempInfo {
         this.title = title;
     }
 
-    public String getMaker() {
-        return maker;
+    public String getInsertdatatime() {
+        return insertdatatime;
     }
 
-    public void setMaker(String maker) {
-        this.maker = maker;
+    public void setInsertdatatime(String insertdatatime) {
+        this.insertdatatime = insertdatatime;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getUpdatedatatime() {
+        return updatedatatime;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUpdatedatatime(String updatedatatime) {
+        this.updatedatatime = updatedatatime;
     }
 
-    public String getSinger() {
-        return singer;
+    public String getDeleteflage() {
+        return deleteflage;
     }
 
-    public void setSinger(String singer) {
-        this.singer = singer;
-    }
-
-    @Override
-    public String toString() {
-        return "OpernInfo{" +
-                "htmlUrl='" + htmlUrl + '\'' +
-                ", title='" + title + '\'' +
-                ", maker='" + maker + '\'' +
-                ", author='" + author + '\'' +
-                ", singer='" + singer + '\'' +
-                '}';
+    public void setDeleteflage(String deleteflage) {
+        this.deleteflage = deleteflage;
     }
 }

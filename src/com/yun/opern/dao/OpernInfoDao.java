@@ -22,4 +22,6 @@ public interface OpernInfoDao {
 
     ArrayList<BaseOpernInfo> searchOpernInfo(@Param("searchParameter") String searchParameter);
 
+    ArrayList<BaseOpernInfo> latestUpdateOpernInfo();
+
 }

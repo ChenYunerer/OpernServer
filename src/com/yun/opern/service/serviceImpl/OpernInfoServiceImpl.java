@@ -3,9 +3,11 @@ package com.yun.opern.service.serviceImpl;
 import com.yun.opern.common.OpernUtil;
 import com.yun.opern.dao.OpernImgInfoDao;
 import com.yun.opern.dao.OpernInfoDao;
+import com.yun.opern.dao.OpernTempInfoDao;
 import com.yun.opern.model.BaseResponse;
 import com.yun.opern.model.OpernImgInfo;
 import com.yun.opern.model.OpernInfo;
+import com.yun.opern.model.OpernTempInfo;
 import com.yun.opern.model.opern.BaseOpernInfo;
 import com.yun.opern.model.opern.GetPopularOpernInfoRequest;
 import com.yun.opern.model.opern.SearchOpernInfoByCategoryRequest;
@@ -29,6 +31,9 @@ public class OpernInfoServiceImpl implements OpernInfoService {
     @Autowired
     private OpernImgInfoDao opernImgInfoDao;
 
+
+    @Autowired
+    private OpernTempInfoDao opernTempInfoDao;
 
     /**
      * 获取所有曲谱
@@ -93,6 +98,35 @@ public class OpernInfoServiceImpl implements OpernInfoService {
     public BaseResponse searchOpernInfo(SearchOpernInfoRequest request) {
         BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
         ArrayList<BaseOpernInfo> baseOpernInfos = opernInfoDao.searchOpernInfo(request.getSearchParameter());
+        ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
+        response.setCode(BaseResponse.RETURN_SUCCESS);
+        response.setMessage("请求数据成功");
+        response.setData(opernInfoArrayList);
+        return response;
+    }
+
+    /**
+     * 获取最新更新时间
+     * @return
+     */
+    @Override
+    public BaseResponse latestUpdateTime() {
+        BaseResponse<String> response = new BaseResponse<>();
+        OpernTempInfo opernTempInfo = opernTempInfoDao.getLastOpernTempInfo();
+        response.setCode(BaseResponse.RETURN_SUCCESS);
+        response.setMessage(BaseResponse.SUCCESS_STRING);
+        response.setData(opernTempInfo.getUpdatedatatime());
+        return response;
+    }
+
+    /**
+     * 获取最新更新operninfo
+     * @return
+     */
+    @Override
+    public BaseResponse latestUpdateOpernInfo() {
+        BaseResponse<ArrayList<OpernInfo>> response = new BaseResponse<>();
+        ArrayList<BaseOpernInfo> baseOpernInfos = opernInfoDao.latestUpdateOpernInfo();
         ArrayList<OpernInfo> opernInfoArrayList = new OpernUtil().getOpernInfoListFromBaseOpernInfo(baseOpernInfos);
         response.setCode(BaseResponse.RETURN_SUCCESS);
         response.setMessage("请求数据成功");

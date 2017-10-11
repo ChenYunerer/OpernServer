@@ -96,4 +96,38 @@ public class OpernController {
         logger.info(methodName + "--end");
         return response;
     }
+
+    @RequestMapping(value = "/latestUpdateTime", method = RequestMethod.GET)
+    public BaseResponse latestUpdateTime() {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        logger.info(methodName + "--start");
+        BaseResponse response = new BaseResponse();
+        try {
+            response = opernInfoService.latestUpdateTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(BaseResponse.RETURN_FAIL);
+            response.setMessage(e.getMessage());
+        }
+
+        logger.info(methodName + "--end");
+        return response;
+    }
+
+    @RequestMapping(value = "/latestUpdateOpernInfo", method = RequestMethod.GET)
+    public BaseResponse latestUpdateOpernInfo() {
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        logger.info(methodName + "--start");
+        BaseResponse response = new BaseResponse();
+        try {
+            response = opernInfoService.latestUpdateOpernInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(BaseResponse.RETURN_FAIL);
+            response.setMessage(e.getMessage());
+        }
+
+        logger.info(methodName + "--end");
+        return response;
+    }
 }

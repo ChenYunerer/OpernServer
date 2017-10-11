@@ -13,7 +13,8 @@
             A.*,
             B.opernIndex,
             B.opernTitle,
-            B.opernImg
+            B.opernImg,
+            B.opernOSSImg
         FROM (SELECT *
               FROM
                   tbl_operninfo
@@ -28,7 +29,8 @@
             A.*,
             B.opernIndex,
             B.opernTitle,
-            B.opernImg
+            B.opernImg,
+        B.opernOSSImg
         FROM (SELECT *
               FROM
                   tbl_operninfo
@@ -52,7 +54,8 @@
         A.*,
         B.opernIndex,
         B.opernTitle,
-        B.opernImg from (SELECT
+        B.opernImg,
+        B.opernOSSImg from (SELECT
         *
         FROM
         tbl_operninfo
@@ -62,5 +65,22 @@
         views DESC
         LIMIT 50) A inner join tbl_opernimginfo B ON A.id = B.opernId
         ORDER BY A.views DESC , B.opernIndex ASC
+    </select>
+
+    <select id="latestUpdateOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
+        SELECT
+            A.*,
+            B.opernIndex,
+            B.opernTitle,
+            B.opernImg,
+            B.opernOSSImg
+        FROM (SELECT *
+              FROM
+                  tbl_operninfo o
+            WHERE o.html in (SELECT htmlUrl from tbl_operntempinfo ot WHERE ot.deleteflage = '0') and o.deleteFlage = '0'
+              ORDER BY
+                  views DESC
+              ) A INNER JOIN tbl_opernimginfo B ON A.id = B.opernId
+        ORDER BY A.views DESC, B.opernIndex ASC
     </select>
 </mapper>

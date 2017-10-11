@@ -7,6 +7,15 @@ public class OpernImgInfo {
     private int opernIndex;
     private String opernTitle;
     private String opernImg;
+    private String opernOSSImg;
+
+    public String getOpernOSSImg() {
+        return opernOSSImg;
+    }
+
+    public void setOpernOSSImg(String opernOSSImg) {
+        this.opernOSSImg = opernOSSImg;
+    }
 
     public String getId() {
         return id;
