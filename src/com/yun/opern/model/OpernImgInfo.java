@@ -54,6 +54,10 @@ public class OpernImgInfo {
     }
 
     public void setOpernImg(String opernImg) {
-        this.opernImg = imgUrlHost + opernImg;
+        if(opernImg.startsWith("http")){
+            this.opernImg = opernImg;
+        }else {
+            this.opernImg = imgUrlHost + opernImg;
+        }
     }
 }
