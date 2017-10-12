@@ -4,7 +4,13 @@
 <mapper namespace="com.yun.opern.dao.CategoryInfoDao">
 
     <select id="getBaseCategoryInfo" resultType="com.yun.opern.model.category.BaseCategoryInfo">
-        select categoryOne, categoryTwo from tbl_operninfo WHERE categoryOne &lt;&gt; '' and categoryTwo &lt;&gt; '' group  by categoryOne , categoryTwo order by categoryOne, categoryTwo
+        SELECT
+            categoryOne,
+            categoryTwo
+        FROM tbl_operninfo
+        WHERE categoryOne &lt;&gt; '' AND categoryTwo &lt;&gt; ''
+        GROUP BY categoryOne, categoryTwo
+        ORDER BY categoryOne, categoryTwo
     </select>
 
 </mapper>
