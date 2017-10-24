@@ -4,7 +4,11 @@
 <mapper namespace="com.yun.opern.dao.NetEaseCloudMusicChartInfoDao">
 
     <select id="musicChart" resultType="com.yun.opern.model.netease.NetEaseCloudMusicChartInfo">
-        SELECT * from tbl_neteasemusicchart ORDER BY sort
+        SELECT * from tbl_neteasemusicchartinfo ORDER BY sort ASC
+    </select>
+
+    <select id="musicChartMusic" resultType="com.yun.opern.model.netease.NetEaseCloudMusicChartMusicInfo">
+        SELECT * from tbl_neteasemusicchartmusicinfo WHERE chartId = #{chartId} ORDER BY sort ASC
     </select>
 
 </mapper>

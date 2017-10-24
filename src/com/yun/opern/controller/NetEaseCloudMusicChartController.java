@@ -39,4 +39,21 @@ public class NetEaseCloudMusicChartController {
         return response;
     }
 
+    @RequestMapping(value = "/musicChartMusic", method = RequestMethod.GET)
+    public BaseResponse musicChartMusic(int chartId){
+        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        logger.info(methodName + "--start");
+        BaseResponse response = new BaseResponse();
+        try {
+            response = netEaseCloudMusicChartService.musicChartMusic(chartId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(BaseResponse.RETURN_FAIL);
+            response.setMessage(e.getMessage());
+        }
+
+        logger.info(methodName + "--end");
+        return response;
+    }
+
 }
