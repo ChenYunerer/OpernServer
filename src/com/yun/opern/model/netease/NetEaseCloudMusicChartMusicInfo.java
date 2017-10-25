@@ -10,6 +10,16 @@ public class NetEaseCloudMusicChartMusicInfo {
     private int duration;
     private int sort;
 
+    private String playUrl;
+
+    public String getPlayUrl() {
+        return playUrl;
+    }
+
+    public void setPlayUrl(String playUrl) {
+        this.playUrl = playUrl;
+    }
+
     public int getSort() {
         return sort;
     }

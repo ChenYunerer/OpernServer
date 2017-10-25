@@ -30,6 +30,7 @@ public class NetEaseCloudMusicChartServiceImpl implements NetEaseCloudMusicChart
     public BaseResponse musicChartMusic(int chartId) {
         BaseResponse<ArrayList<NetEaseCloudMusicChartMusicInfo>> response = new BaseResponse<>();
         ArrayList<NetEaseCloudMusicChartMusicInfo> data = netEaseCloudMusicChartInfoDao.musicChartMusic(chartId);
+        data.forEach(netEaseCloudMusicChartMusicInfo -> netEaseCloudMusicChartMusicInfo.setPlayUrl("http://music.163.com/song/media/outer/url?id=" + netEaseCloudMusicChartMusicInfo.getId() + ".mp3"));
         response.setCode(BaseResponse.RETURN_SUCCESS);
         response.setMessage(BaseResponse.SUCCESS_STRING);
         response.setData(data);
