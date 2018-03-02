@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 控制台调试信息打印  -->
+    <appender name="SYSTEM_OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoding>UTF-8</encoding>
+        <encoder>
+            <Pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] %mdc{client} %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- 系统框架自有日志 -->
+    <appender name="SYSTEM_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoding>UTF-8</encoding>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${catalina.home}/logs/syl.system_error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 单个日志文件大小 -->
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 日志文件保留时间，以日志文件产生的时间维度计算，如：配置成yyyy-MM-dd则按天，配置成yyyy-MM-dd_HH-mm则按分钟 -->
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line] %mdc{client} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 项目自定义日志（error） -->
+    <appender name="MY_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoding>UTF-8</encoding>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${catalina.home}/logs/syl.my_error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 单个日志文件大小 -->
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 日志文件保留时间，以日志文件产生的时间维度计算，如：配置成yyyy-MM-dd则按天，配置成yyyy-MM-dd_HH-mm则按分钟 -->
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line] %mdc{client} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="my_error" additivity="true">
+        <appender-ref ref="MY_ERROR_FILE"/>
+    </logger>
+
+    <!-- 项目自定义日志（info） -->
+    <appender name="MY_INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoding>UTF-8</encoding>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${catalina.home}/logs/syl.my_info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 单个日志文件大小 -->
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 日志文件保留时间，以日志文件产生的时间维度计算，如：配置成yyyy-MM-dd则按天，配置成yyyy-MM-dd_HH-mm则按分钟 -->
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line] %mdc{client} %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="my_info" additivity="true">
+        <appender-ref ref="MY_INFO_FILE"/>
+    </logger>
+
+    <!-- 系统框架自有日志识别，必须与系统日志的配置名称一样 -->
+    <root level="TRACE">
+        <!-- 控制台调试信息打印 -->
+        <appender-ref ref="SYSTEM_OUT"/>
+        <!-- 系统框架自有日志 -->
+        <appender-ref ref="SYSTEM_ERROR_FILE"/>
+    </root>
+
+</configuration>

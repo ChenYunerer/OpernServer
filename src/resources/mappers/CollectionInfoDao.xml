@@ -3,44 +3,14 @@
 
 <mapper namespace="com.yun.opern.dao.CollectionInfoDao">
 
-    <insert id="addCollectionInfo">
-        REPLACE INTO tbl_collectioninfo (userId, opernId, delFlg, updateDataTime)
-        VALUES (#{userId}, #{opernId}, '0', now())
+    <insert id="saveCollectionInfo">
+        INSERT INTO tbl_user_collection_info VALUES (${userId}, ${opernId}, 1, now())
     </insert>
 
-    <update id="removeCollectionInfo">
-        UPDATE tbl_collectioninfo
-        SET delFlg = '1', updateDataTime = now()
-        WHERE userId = #{userId} AND opernId = #{opernId} AND delFlg = '0'
-    </update>
-
-    <select id="getUserAllCollectionInfo" resultType="com.yun.opern.model.collection.CollectionInfo">
+    <select id="listUserCollectionInfo" resultType="UserCollectionInfo">
         SELECT *
-        FROM tbl_collectioninfo
-        WHERE userId = #{userId} AND delFlg = '0'
-        ORDER BY updateDataTime DESC
-    </select>
-
-    <select id="getUserCollectionInfo" resultType="com.yun.opern.model.collection.CollectionInfo">
-        SELECT *
-        FROM tbl_collectioninfo
-        WHERE userId = #{userId} AND opernId = #{opernId} AND delFlg = '0'
-        LIMIT 1
-    </select>
-
-    <select id="getCollectionOpernInfo" resultType="com.yun.opern.model.opern.BaseOpernInfo">
-        SELECT
-            A.*,
-            B.opernIndex,
-            B.opernTitle,
-            B.opernImg
-        FROM (SELECT tbl_operninfo.*
-              FROM
-                  tbl_operninfo
-                  INNER JOIN tbl_collectioninfo ON tbl_operninfo.id = tbl_collectioninfo.opernId
-              WHERE
-                  userId = #{userId} AND delFlg = '0') A INNER JOIN tbl_opernimginfo B ON A.id = B.opernId
-        ORDER BY A.updateDataTime DESC , A.views DESC, B.opernIndex ASC
+        FROM tbl_user_collection_info
+        WHERE delflg = 1
     </select>
 
 </mapper>
