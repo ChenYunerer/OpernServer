@@ -1,6 +1,6 @@
 package com.yun.opern.dao;
 
-import com.yun.opern.model.DO.UserCollectionInfo;
+import com.yun.opern.model.DO.UserCollectionInfoDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public interface CollectionInfoDao {
      * @param opernId 收藏的曲谱id
      * @return 影响条数
      */
-    int saveCollectionInfo(@Param("userId") int userId, @Param("opernId") String opernId);
+    int saveCollectionInfo(@Param("userId") int userId, @Param("opernId") int opernId);
 
     /**
      * 获取用户所有收藏信息
@@ -30,5 +30,5 @@ public interface CollectionInfoDao {
      * @param userId 用户id
      * @return 收藏信息
      */
-    List<UserCollectionInfo> listUserCollectionInfo(int userId);
+    List<UserCollectionInfoDO> listUserCollectionInfo(int userId);
 }

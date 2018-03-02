@@ -1,7 +1,7 @@
 package com.yun.opern.service.serviceImpl;
 
 import com.yun.opern.dao.UserInfoDao;
-import com.yun.opern.model.DO.UserInfo;
+import com.yun.opern.model.DO.UserInfoDO;
 import com.yun.opern.model.DTO.BaseResponseDTO;
 import com.yun.opern.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ public class UserInfoServiceImpl implements IUserInfoService {
     /**
      * 用户登陆
      *
-     * @param userInfo 用户信息
+     * @param userInfoDO 用户信息
      * @return BaseResponse
      */
     @Override
-    public BaseResponseDTO login(UserInfo userInfo) {
+    public BaseResponseDTO login(UserInfoDO userInfoDO) {
         return null;
     }
 }

@@ -1,12 +1,12 @@
 package com.yun.opern.service;
 
-import com.yun.opern.model.DO.UserCollectionInfo;
+import com.yun.opern.model.DO.UserCollectionInfoDO;
 
 import java.util.List;
 
 public interface ICollectionInfoService {
 
-    boolean addCollection(int userId, String opernId);
+    boolean addCollection(int userId, int opernId);
 
-    List<UserCollectionInfo> getCollection(int userId);
+    List<UserCollectionInfoDO> getCollection(int userId);
 }

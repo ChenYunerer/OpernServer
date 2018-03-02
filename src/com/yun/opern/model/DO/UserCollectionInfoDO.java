@@ -1,6 +1,6 @@
 package com.yun.opern.model.DO;
 
-public class UserCollectionInfo {
+public class UserCollectionInfoDO {
     private int userId;
     private int opernId;
     private int delflg;
@@ -40,7 +40,7 @@ public class UserCollectionInfo {
 
     @Override
     public String toString() {
-        return "UserCollectionInfo{" +
+        return "UserCollectionInfoDO{" +
                 "userId=" + userId +
                 ", opernId=" + opernId +
                 ", delflg=" + delflg +

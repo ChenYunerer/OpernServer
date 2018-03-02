@@ -1,6 +1,6 @@
 package com.yun.opern.model.DO;
 
-public class OpernPicInfo {
+public class OpernPicInfoDO {
     private int opernId;
     private int opernPicIndex;
     private String opernPicUrl;
@@ -31,7 +31,7 @@ public class OpernPicInfo {
 
     @Override
     public String toString() {
-        return "OpernPicInfo{" +
+        return "OpernPicInfoDO{" +
                 "opernId=" + opernId +
                 ", opernPicIndex=" + opernPicIndex +
                 ", opernPicUrl='" + opernPicUrl + '\'' +

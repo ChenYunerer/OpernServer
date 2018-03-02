@@ -1,6 +1,6 @@
 package com.yun.opern.model.DO;
 
-public class OpernInfo {
+public class OpernInfoDO {
     private int id;  //自增id
     private String originName = "";  //原平台名称 如中国曲谱网
     private String originId = "";  //曲谱在原平台的id
@@ -152,7 +152,7 @@ public class OpernInfo {
 
     @Override
     public String toString() {
-        return "OpernInfo{" +
+        return "OpernInfoDO{" +
                 "id=" + id +
                 ", originName='" + originName + '\'' +
                 ", originId='" + originId + '\'' +

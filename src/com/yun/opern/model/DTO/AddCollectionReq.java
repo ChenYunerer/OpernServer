@@ -2,7 +2,7 @@ package com.yun.opern.model.DTO;
 
 public class AddCollectionReq {
     private int userId;
-    private String opernId;
+    private int opernId;
 
     public int getUserId() {
         return userId;
@@ -12,11 +12,11 @@ public class AddCollectionReq {
         this.userId = userId;
     }
 
-    public String getOpernId() {
+    public int getOpernId() {
         return opernId;
     }
 
-    public void setOpernId(String opernId) {
+    public void setOpernId(int opernId) {
         this.opernId = opernId;
     }
 }

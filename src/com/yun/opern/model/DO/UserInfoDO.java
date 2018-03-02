@@ -2,7 +2,7 @@ package com.yun.opern.model.DO;
 
 import java.sql.Timestamp;
 
-public class UserInfo {
+public class UserInfoDO {
     private int id;
     private String originName;
     private String originId;

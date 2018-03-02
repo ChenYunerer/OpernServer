@@ -1,7 +1,6 @@
 package com.yun.opern.dao;
 
-import com.yun.opern.model.DO.UserInfo;
-import org.springframework.stereotype.Repository;
+import com.yun.opern.model.DO.UserInfoDO;
 
 /**
  * 1） 获取单个对象的方法用 get 做前缀。
@@ -20,14 +19,14 @@ public interface UserInfoDao {
      * @param originId   在平台的id
      * @return 用户信息
      */
-    UserInfo getUserInfoByOrigin(String originName, String originId);
+    UserInfoDO getUserInfoByOrigin(String originName, String originId);
 
     /**
      * 插入保存用户信息
      *
-     * @param userInfo 用户信息
+     * @param userInfoDO 用户信息
      * @return 0 失败 > 0 成功
      */
-    int saveUserInfo(UserInfo userInfo);
+    int saveUserInfo(UserInfoDO userInfoDO);
 
 }
