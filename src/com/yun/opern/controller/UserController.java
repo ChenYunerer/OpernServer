@@ -1,6 +1,6 @@
 package com.yun.opern.controller;
 
-import com.yun.opern.model.DTO.BaseResponseDTO;
+import com.yun.opern.model.DTO.res.BaseResponseDTO;
 import com.yun.opern.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -4,7 +4,7 @@
 <mapper namespace="com.yun.opern.dao.CollectionInfoDao">
 
     <insert id="saveCollectionInfo">
-        INSERT INTO tbl_user_collection_info VALUES (${userId}, ${opernId}, 1, now())
+        INSERT INTO tbl_user_collection_info VALUES (#{userId}, #{opernId}, 1, now())
     </insert>
 
     <select id="listUserCollectionInfo" resultType="UserCollectionInfo">

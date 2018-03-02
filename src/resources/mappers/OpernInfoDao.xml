@@ -3,8 +3,22 @@
 
 <mapper namespace="com.yun.opern.dao.OpernInfoDao">
 
-    <select id="getOpernInfoById" resultType="OpernInfo">
-        SELECT * FROM tbl_opern_info WHERE id = ${id} LIMIT 1
+    <select id="getOpernInfoById" resultType="OpernInfoDO">
+        SELECT * FROM tbl_opern_info WHERE id = #{id} LIMIT 1
+    </select>
+
+    <select id="listOpernInfoOrderByViewCount" resultType="OpernInfoDTO">
+        SELECT * FROM tbl_opern_info ORDER BY opernViews DESC LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getOpernPicInfoById" resultType="OpernPicInfo">
+        SELECT * FROM tbl_opern_pic_info WHERE opernId = #{id} ORDER BY opernPicIndex
+    </select>
+
+    <select id="getOpernInfoBySearchParameter" resultType="OpernInfoDTO">
+        <bind name="pattern" value="'%' + _parameter.searchParameter + '%'"/>
+        SELECT * FROM tbl_opern_info WHERE opernName LIKE #{pattern} OR opernWordAuthor LIKE #{pattern} OR
+        opernSongAuthor LIKE #{pattern}
     </select>
 
 </mapper>

@@ -1,4 +1,4 @@
-package com.yun.opern.model.DTO;
+package com.yun.opern.model.DTO.req;
 
 public class AddCollectionReq {
     private int userId;

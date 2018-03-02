@@ -1,4 +1,4 @@
-package com.yun.opern.model.DTO;
+package com.yun.opern.model.DTO.res;
 
 /**
  * code == 1 成功 code == 2 失败

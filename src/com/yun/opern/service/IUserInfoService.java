@@ -1,7 +1,7 @@
 package com.yun.opern.service;
 
 import com.yun.opern.model.DO.UserInfoDO;
-import com.yun.opern.model.DTO.BaseResponseDTO;
+import com.yun.opern.model.DTO.res.BaseResponseDTO;
 
 public interface IUserInfoService {
 

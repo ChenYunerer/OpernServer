@@ -1,9 +1,9 @@
 package com.yun.opern.controller;
 
 import com.yun.opern.model.DO.UserCollectionInfoDO;
-import com.yun.opern.model.DTO.AddCollectionReq;
-import com.yun.opern.model.DTO.BaseResponseDTO;
-import com.yun.opern.model.DTO.GetCollectionReq;
+import com.yun.opern.model.DTO.req.AddCollectionReq;
+import com.yun.opern.model.DTO.res.BaseResponseDTO;
+import com.yun.opern.model.DTO.req.GetCollectionReq;
 import com.yun.opern.service.ICollectionInfoService;
 import com.yun.opern.service.IOpernInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
