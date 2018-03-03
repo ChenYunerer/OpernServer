@@ -39,7 +39,8 @@
     <!-- 允许访问路径（不被拦截可以直接访问） -->
     <mvc:resources location="/upload/" mapping="/upload/**/"/>
     <mvc:resources location="/resources/" mapping="/resources/**/"/>
-    <mvc:resources location="../" mapping="*.txt"/>
+    <mvc:resources location="/" mapping="*.html"/>
+    <!--<mvc:resources location="/" mapping="/"/>-->
 
     <!-- 视图解析器配置 -->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
