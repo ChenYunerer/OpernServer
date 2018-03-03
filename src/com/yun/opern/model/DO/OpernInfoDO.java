@@ -1,5 +1,7 @@
 package com.yun.opern.model.DO;
 
+import java.sql.Timestamp;
+
 public class OpernInfoDO {
     private int id;  //自增id
     private String originName = "";  //原平台名称 如中国曲谱网
@@ -16,7 +18,7 @@ public class OpernInfoDO {
     private String opernCategoryOne = "";  //一级类目
     private String opernCategoryTwo = "";  //二级类目
     private String opernUploadTime = "";  //曲谱在原平台的上传时间
-    private String addTime;  //记录添加时间
+    private Timestamp addTime;  //记录添加时间
 
     public int getId() {
         return id;
@@ -130,11 +132,11 @@ public class OpernInfoDO {
         this.opernUploadTime = opernUploadTime;
     }
 
-    public String getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 

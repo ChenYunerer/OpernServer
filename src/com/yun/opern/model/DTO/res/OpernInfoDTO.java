@@ -2,6 +2,7 @@ package com.yun.opern.model.DTO.res;
 
 import com.yun.opern.model.DO.OpernPicInfoDO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class OpernInfoDTO {
@@ -20,7 +21,7 @@ public class OpernInfoDTO {
     private String opernCategoryOne = "";  //一级类目
     private String opernCategoryTwo = "";  //二级类目
     private String opernUploadTime = "";  //曲谱在原平台的上传时间
-    private String addTime;  //记录添加时间
+    private Timestamp addTime;  //记录添加时间
     private List<OpernPicInfoDO> opernPicInfoList;  //曲谱图片
 
     public int getId() {
@@ -143,11 +144,11 @@ public class OpernInfoDTO {
         this.opernUploadTime = opernUploadTime;
     }
 
-    public String getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 

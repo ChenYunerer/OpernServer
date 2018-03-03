@@ -7,7 +7,7 @@
         INSERT INTO tbl_user_collection_info VALUES (#{userId}, #{opernId}, 1, now())
     </insert>
 
-    <select id="listUserCollectionInfo" resultType="UserCollectionInfo">
+    <select id="listUserCollectionInfo" resultType="UserCollectionInfoDO">
         SELECT *
         FROM tbl_user_collection_info
         WHERE delflg = 1

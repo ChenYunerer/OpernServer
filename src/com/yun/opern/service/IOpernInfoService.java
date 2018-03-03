@@ -9,4 +9,8 @@ public interface IOpernInfoService {
     boolean isOpernInfoExist(int id);
 
     List<OpernInfoDTO> listOpernInfoOrderByViewCount(int pageNum, int pageSize);
+
+    List<OpernInfoDTO> listRandomOpernInfo(int pageSize);
+
+    List<OpernInfoDTO> searchOpernInfo(String searchParameter, int pageNum, int pageSize);
 }

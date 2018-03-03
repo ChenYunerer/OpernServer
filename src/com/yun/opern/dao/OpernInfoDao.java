@@ -17,6 +17,8 @@ import java.util.List;
  */
 public interface OpernInfoDao {
 
+    int countOpernInfo();
+
     /**
      * 通过曲谱id获取曲谱信息
      *
@@ -43,6 +45,6 @@ public interface OpernInfoDao {
     List<OpernPicInfoDO> getOpernPicInfoById(int id);
 
 
-    List<OpernInfoDTO> getOpernInfoBySearchParameter(String searchParameter);
+    List<OpernInfoDTO> getOpernInfoBySearchParameter(@Param("searchParameter") String searchParameter, @Param("start") int start, @Param("size") int size);
 
 }
