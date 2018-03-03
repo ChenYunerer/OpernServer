@@ -1,9 +1,9 @@
 package com.yun.opern.model.DO;
 
 public class OpernPicInfoDO {
-    private int opernId;
-    private int opernPicIndex;
-    private String opernPicUrl;
+    private int opernId;  // 曲谱id 非第三方id
+    private int opernPicIndex;  //曲谱图片index
+    private String opernPicUrl;  //曲谱图片全路径
 
     public int getOpernId() {
         return opernId;

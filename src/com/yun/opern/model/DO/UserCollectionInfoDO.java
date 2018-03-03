@@ -1,10 +1,12 @@
 package com.yun.opern.model.DO;
 
+import java.sql.Timestamp;
+
 public class UserCollectionInfoDO {
-    private int userId;
-    private int opernId;
-    private int delflg;
-    private String addTime;
+    private int userId;  //用户id
+    private int opernId;  //曲谱id 非第三方id
+    private int delflg;  //删除状态 1 正常 2 删除
+    private Timestamp addTime;  //添加时间
 
     public int getUserId() {
         return userId;
@@ -30,11 +32,11 @@ public class UserCollectionInfoDO {
         this.delflg = delflg;
     }
 
-    public String getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 

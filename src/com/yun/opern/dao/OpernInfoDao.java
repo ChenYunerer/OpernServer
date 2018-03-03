@@ -17,6 +17,11 @@ import java.util.List;
  */
 public interface OpernInfoDao {
 
+    /**
+     * 统计所有曲谱数量
+     *
+     * @return 所有曲谱数量
+     */
     int countOpernInfo();
 
     /**
@@ -45,6 +50,13 @@ public interface OpernInfoDao {
     List<OpernPicInfoDO> getOpernPicInfoById(int id);
 
 
+    /**
+     * 搜索曲谱信息
+     * @param searchParameter 搜索参数 曲谱名称 曲作者 词作者
+     * @param start 查询起始位置
+     * @param size 查询数量
+     * @return 曲谱信息
+     */
     List<OpernInfoDTO> getOpernInfoBySearchParameter(@Param("searchParameter") String searchParameter, @Param("start") int start, @Param("size") int size);
 
 }

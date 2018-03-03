@@ -20,6 +20,12 @@ public class OpernController {
     @Autowired
     private IOpernInfoService opernInfoService;
 
+    /**
+     * 按照浏览量获取曲谱
+     *
+     * @param request 请求参数
+     * @return 曲谱信息
+     */
     @RequestMapping(value = "/orderedOpern", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseDTO<List<OpernInfoDTO>> getOrderedOpern(@RequestBody GetOrderedOpernReq request) {
@@ -39,6 +45,11 @@ public class OpernController {
         return baseResponseDTO;
     }
 
+    /**
+     * 随机获取曲谱
+     * @param request 请求参数
+     * @return 曲谱信息
+     */
     @RequestMapping(value = "/randomOpern", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseDTO<List<OpernInfoDTO>> getRandomOpern(@RequestBody GetRandomOpernReq request) {
@@ -54,6 +65,11 @@ public class OpernController {
         return baseResponseDTO;
     }
 
+    /**
+     * 搜索曲谱
+     * @param request 请求参数
+     * @return 曲谱信息
+     */
     @RequestMapping(value = "/searchOpern", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseDTO<List<OpernInfoDTO>> searchOpern(@RequestBody SearchOpernReq request) {

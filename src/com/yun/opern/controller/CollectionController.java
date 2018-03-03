@@ -22,6 +22,12 @@ public class CollectionController {
     @Autowired
     private IOpernInfoService opernInfoService;
 
+    /**
+     * 添加收藏
+     *
+     * @param request 请求参数
+     * @return BaseResponse
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseDTO addCollection(@RequestBody AddCollectionReq request) {
@@ -55,6 +61,11 @@ public class CollectionController {
         return baseResponseDTO;
     }
 
+    /**
+     * 查询收藏信息
+     * @param request 请求参数
+     * @return 收藏信息
+     */
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponseDTO<List<UserCollectionInfoDO>> getCollection(@RequestBody GetCollectionReq request) {

@@ -17,12 +17,24 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
     @Autowired
     OpernInfoDao opernInfoDao;
 
+    /**
+     * 判断曲谱是否存在
+     *
+     * @param id 曲谱id
+     * @return 是否存在
+     */
     @Override
     public boolean isOpernInfoExist(int id) {
         OpernInfoDO opernInfoDO = opernInfoDao.getOpernInfoById(id);
         return opernInfoDO != null;
     }
 
+    /**
+     * 获取曲谱信息 按照浏览量排序
+     * @param pageNum 分页页码
+     * @param pageSize 分页大小
+     * @return 曲谱数据
+     */
     @Override
     public List<OpernInfoDTO> listOpernInfoOrderByViewCount(int pageNum, int pageSize) {
         int start = pageNum * pageSize;
@@ -35,6 +47,11 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
         return opernInfoDTOList;
     }
 
+    /**
+     * 获取曲谱信息 随机
+     * @param pageSize 分页大小
+     * @return 曲谱数据
+     */
     @Override
     public List<OpernInfoDTO> listRandomOpernInfo(int pageSize) {
         List<OpernInfoDTO> opernInfoDTOList = new ArrayList<>();
@@ -49,6 +66,13 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
         return opernInfoDTOList;
     }
 
+    /**
+     * 搜索曲谱
+     * @param searchParameter 搜索参数 曲谱名称 曲作者 词作者
+     * @param pageNum 分页页码
+     * @param pageSize 分页大小
+     * @return 曲谱数据
+     */
     @Override
     public List<OpernInfoDTO> searchOpernInfo(String searchParameter, int pageNum, int pageSize) {
         int start = pageNum * pageSize;
