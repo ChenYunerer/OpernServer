@@ -15,11 +15,14 @@
         LIMIT 1
     </select>
 
-    <select id="listOpernInfoOrderByViewCount" resultType="OpernInfoDTO">
+    <select id="listOpernInfoOrderByViewCount" resultType="BaseOpernInfoDO">
         SELECT *
+        FROM (SELECT *
         FROM tbl_opern_info
         ORDER BY opernViews DESC
-        LIMIT #{start}, #{size}
+        LIMIT #{start}, #{size}) A INNER JOIN tbl_opern_pic_info B ON A.id = B.opernId
+        ORDER BY opernViews DESC, opernPicIndex ASC
+
     </select>
 
     <select id="getOpernPicInfoById" resultType="OpernPicInfoDO">
@@ -29,12 +32,14 @@
         ORDER BY opernPicIndex
     </select>
 
-    <select id="getOpernInfoBySearchParameter" resultType="OpernInfoDTO">
+    <select id="getOpernInfoBySearchParameter" resultType="BaseOpernInfoDO">
         <bind name="pattern" value="'%' + _parameter.searchParameter + '%'"/>
-        SELECT * FROM tbl_opern_info WHERE opernName LIKE #{pattern} OR opernWordAuthor LIKE #{pattern} OR
+        SELECT * FROM (SELECT * FROM tbl_opern_info WHERE opernName LIKE #{pattern} OR opernWordAuthor LIKE #{pattern}
+        OR
         opernSongAuthor LIKE #{pattern}
         ORDER BY opernViews DESC
-        LIMIT #{start}, #{size}
+        LIMIT #{start}, #{size}) A INNER JOIN tbl_opern_pic_info B ON A.id = B.opernId
+        ORDER BY A.opernViews DESC, B.opernPicIndex ASC
     </select>
 
 </mapper>

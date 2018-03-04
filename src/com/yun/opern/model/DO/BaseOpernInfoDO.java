@@ -1,8 +1,11 @@
 package com.yun.opern.model.DO;
 
+import com.yun.opern.model.DTO.res.OpernInfoDTO;
+
 import java.sql.Timestamp;
 
-public class OpernInfoDO {
+public class BaseOpernInfoDO {
+    //OpernInfo
     private int id;  //自增id
     private String originName = "";  //原平台名称 如中国曲谱网
     private String originId = "";  //曲谱在原平台的id
@@ -19,27 +22,20 @@ public class OpernInfoDO {
     private String opernCategoryTwo = "";  //二级类目
     private String opernUploadTime = "";  //曲谱在原平台的上传时间
     private Timestamp addTime;  //记录添加时间
+    //OpernPicInfo
+    private int opernId;  // 曲谱id 非第三方id
+    private int opernPicIndex;  //曲谱图片index
+    private String opernPicUrl;  //曲谱图片全路径
 
-    public OpernInfoDO() {
+
+    public OpernInfoDTO getOpernInfoDTO() {
+        OpernInfoDTO opernInfoDTO = new OpernInfoDTO(id, originName, originId, opernName, opernWordAuthor, opernSongAuthor, opernViews, opernUploader, opernOriginHtmlUrl, opernPicNum, opernFirstPicUrl, opernFormat, opernCategoryOne, opernCategoryTwo, opernUploadTime, addTime);
+        return opernInfoDTO;
     }
 
-    public OpernInfoDO(int id, String originName, String originId, String opernName, String opernWordAuthor, String opernSongAuthor, int opernViews, String opernUploader, String opernOriginHtmlUrl, int opernPicNum, String opernFirstPicUrl, int opernFormat, String opernCategoryOne, String opernCategoryTwo, String opernUploadTime, Timestamp addTime) {
-        this.id = id;
-        this.originName = originName;
-        this.originId = originId;
-        this.opernName = opernName;
-        this.opernWordAuthor = opernWordAuthor;
-        this.opernSongAuthor = opernSongAuthor;
-        this.opernViews = opernViews;
-        this.opernUploader = opernUploader;
-        this.opernOriginHtmlUrl = opernOriginHtmlUrl;
-        this.opernPicNum = opernPicNum;
-        this.opernFirstPicUrl = opernFirstPicUrl;
-        this.opernFormat = opernFormat;
-        this.opernCategoryOne = opernCategoryOne;
-        this.opernCategoryTwo = opernCategoryTwo;
-        this.opernUploadTime = opernUploadTime;
-        this.addTime = addTime;
+    public OpernPicInfoDO getOpernPicInfoDO() {
+        OpernPicInfoDO opernPicInfoDO = new OpernPicInfoDO(opernId, opernPicIndex, opernPicUrl);
+        return opernPicInfoDO;
     }
 
     public int getId() {
@@ -126,8 +122,16 @@ public class OpernInfoDO {
         return opernFirstPicUrl;
     }
 
-    public void setOpernFitstPicUrl(String opernFirstPicUrl) {
+    public void setOpernFirstPicUrl(String opernFirstPicUrl) {
         this.opernFirstPicUrl = opernFirstPicUrl;
+    }
+
+    public int getOpernFormat() {
+        return opernFormat;
+    }
+
+    public void setOpernFormat(int opernFormat) {
+        this.opernFormat = opernFormat;
     }
 
     public String getOpernCategoryOne() {
@@ -162,37 +166,27 @@ public class OpernInfoDO {
         this.addTime = addTime;
     }
 
-    public void setOpernFirstPicUrl(String opernFirstPicUrl) {
-        this.opernFirstPicUrl = opernFirstPicUrl;
+    public int getOpernId() {
+        return opernId;
     }
 
-    public int getOpernFormat() {
-        return opernFormat;
+    public void setOpernId(int opernId) {
+        this.opernId = opernId;
     }
 
-    public void setOpernFormat(int opernFormat) {
-        this.opernFormat = opernFormat;
+    public int getOpernPicIndex() {
+        return opernPicIndex;
     }
 
-    @Override
-    public String toString() {
-        return "OpernInfoDO{" +
-                "id=" + id +
-                ", originName='" + originName + '\'' +
-                ", originId='" + originId + '\'' +
-                ", opernName='" + opernName + '\'' +
-                ", opernWordAuthor='" + opernWordAuthor + '\'' +
-                ", opernSongAuthor='" + opernSongAuthor + '\'' +
-                ", opernViews=" + opernViews +
-                ", opernUploader='" + opernUploader + '\'' +
-                ", opernOriginHtmlUrl='" + opernOriginHtmlUrl + '\'' +
-                ", opernPicNum=" + opernPicNum +
-                ", opernFirstPicUrl='" + opernFirstPicUrl + '\'' +
-                ", opernFormat=" + opernFormat +
-                ", opernCategoryOne='" + opernCategoryOne + '\'' +
-                ", opernCategoryTwo='" + opernCategoryTwo + '\'' +
-                ", opernUploadTime='" + opernUploadTime + '\'' +
-                ", addTime='" + addTime + '\'' +
-                '}';
+    public void setOpernPicIndex(int opernPicIndex) {
+        this.opernPicIndex = opernPicIndex;
+    }
+
+    public String getOpernPicUrl() {
+        return opernPicUrl;
+    }
+
+    public void setOpernPicUrl(String opernPicUrl) {
+        this.opernPicUrl = opernPicUrl;
     }
 }

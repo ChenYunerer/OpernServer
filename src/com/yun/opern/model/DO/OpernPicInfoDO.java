@@ -5,6 +5,15 @@ public class OpernPicInfoDO {
     private int opernPicIndex;  //曲谱图片index
     private String opernPicUrl;  //曲谱图片全路径
 
+    public OpernPicInfoDO() {
+    }
+
+    public OpernPicInfoDO(int opernId, int opernPicIndex, String opernPicUrl) {
+        this.opernId = opernId;
+        this.opernPicIndex = opernPicIndex;
+        this.opernPicUrl = opernPicUrl;
+    }
+
     public int getOpernId() {
         return opernId;
     }

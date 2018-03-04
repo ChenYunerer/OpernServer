@@ -3,7 +3,9 @@ package com.yun.opern.model.DTO.res;
 import com.yun.opern.model.DO.OpernPicInfoDO;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class OpernInfoDTO {
     private int id;  //自增id
@@ -23,6 +25,43 @@ public class OpernInfoDTO {
     private String opernUploadTime = "";  //曲谱在原平台的上传时间
     private Timestamp addTime;  //记录添加时间
     private List<OpernPicInfoDO> opernPicInfoList;  //曲谱图片
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OpernInfoDTO that = (OpernInfoDTO) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
+
+    public OpernInfoDTO() {
+    }
+
+    public OpernInfoDTO(int id, String originName, String originId, String opernName, String opernWordAuthor, String opernSongAuthor, int opernViews, String opernUploader, String opernOriginHtmlUrl, int opernPicNum, String opernFirstPicUrl, int opernFormat, String opernCategoryOne, String opernCategoryTwo, String opernUploadTime, Timestamp addTime) {
+        this.id = id;
+        this.originName = originName;
+        this.originId = originId;
+        this.opernName = opernName;
+        this.opernWordAuthor = opernWordAuthor;
+        this.opernSongAuthor = opernSongAuthor;
+        this.opernViews = opernViews;
+        this.opernUploader = opernUploader;
+        this.opernOriginHtmlUrl = opernOriginHtmlUrl;
+        this.opernPicNum = opernPicNum;
+        this.opernFirstPicUrl = opernFirstPicUrl;
+        this.opernFormat = opernFormat;
+        this.opernCategoryOne = opernCategoryOne;
+        this.opernCategoryTwo = opernCategoryTwo;
+        this.opernUploadTime = opernUploadTime;
+        this.addTime = addTime;
+        this.opernPicInfoList = new ArrayList<>();
+    }
 
     public int getId() {
         return id;

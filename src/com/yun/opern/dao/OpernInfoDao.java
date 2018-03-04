@@ -1,5 +1,6 @@
 package com.yun.opern.dao;
 
+import com.yun.opern.model.DO.BaseOpernInfoDO;
 import com.yun.opern.model.DO.OpernInfoDO;
 import com.yun.opern.model.DO.OpernPicInfoDO;
 import com.yun.opern.model.DTO.res.OpernInfoDTO;
@@ -39,7 +40,7 @@ public interface OpernInfoDao {
      * @param size  查询数量
      * @return 曲谱信息
      */
-    List<OpernInfoDTO> listOpernInfoOrderByViewCount(@Param("start") int start, @Param("size") int size);
+    List<BaseOpernInfoDO> listOpernInfoOrderByViewCount(@Param("start") int start, @Param("size") int size);
 
     /**
      * 通过曲谱id获取谱曲图片信息
@@ -57,6 +58,6 @@ public interface OpernInfoDao {
      * @param size 查询数量
      * @return 曲谱信息
      */
-    List<OpernInfoDTO> getOpernInfoBySearchParameter(@Param("searchParameter") String searchParameter, @Param("start") int start, @Param("size") int size);
+    List<BaseOpernInfoDO> getOpernInfoBySearchParameter(@Param("searchParameter") String searchParameter, @Param("start") int start, @Param("size") int size);
 
 }

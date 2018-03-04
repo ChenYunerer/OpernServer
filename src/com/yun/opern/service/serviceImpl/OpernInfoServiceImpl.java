@@ -1,6 +1,7 @@
 package com.yun.opern.service.serviceImpl;
 
 import com.yun.opern.dao.OpernInfoDao;
+import com.yun.opern.model.DO.BaseOpernInfoDO;
 import com.yun.opern.model.DO.OpernInfoDO;
 import com.yun.opern.model.DO.OpernPicInfoDO;
 import com.yun.opern.model.DTO.res.OpernInfoDTO;
@@ -31,7 +32,8 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
 
     /**
      * 获取曲谱信息 按照浏览量排序
-     * @param pageNum 分页页码
+     *
+     * @param pageNum  分页页码
      * @param pageSize 分页大小
      * @return 曲谱数据
      */
@@ -39,49 +41,59 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
     public List<OpernInfoDTO> listOpernInfoOrderByViewCount(int pageNum, int pageSize) {
         int start = pageNum * pageSize;
         int size = pageSize;
-        List<OpernInfoDTO> opernInfoDTOList = opernInfoDao.listOpernInfoOrderByViewCount(start, size);
-        opernInfoDTOList.forEach(opernInfoDTO -> {
-            List<OpernPicInfoDO> opernPicInfoDOList = opernInfoDao.getOpernPicInfoById(opernInfoDTO.getId());
-            opernInfoDTO.setOpernPicInfoList(opernPicInfoDOList);
-        });
+        List<BaseOpernInfoDO> baseOpernInfoDOList = opernInfoDao.listOpernInfoOrderByViewCount(start, size);
+        List<OpernInfoDTO> opernInfoDTOList = baseOpernInfo2OpernInfo(baseOpernInfoDOList);
         return opernInfoDTOList;
     }
 
     /**
      * 获取曲谱信息 随机
+     *
      * @param pageSize 分页大小
      * @return 曲谱数据
      */
     @Override
     public List<OpernInfoDTO> listRandomOpernInfo(int pageSize) {
-        List<OpernInfoDTO> opernInfoDTOList = new ArrayList<>();
         int count = opernInfoDao.countOpernInfo();
-        for (int index = 0; index < pageSize; index++) {
-            int randomNum = (int) (Math.random() * count);
-            OpernInfoDTO opernInfoDTO = opernInfoDao.listOpernInfoOrderByViewCount(randomNum, 1).get(0);
-            List<OpernPicInfoDO> opernPicInfoDOList = opernInfoDao.getOpernPicInfoById(opernInfoDTO.getId());
-            opernInfoDTO.setOpernPicInfoList(opernPicInfoDOList);
-            opernInfoDTOList.add(opernInfoDTO);
-        }
+        int start = (int) (Math.random() * count);
+        List<BaseOpernInfoDO> baseOpernInfoDOList = opernInfoDao.listOpernInfoOrderByViewCount(start, pageSize);
+        List<OpernInfoDTO> opernInfoDTOList = baseOpernInfo2OpernInfo(baseOpernInfoDOList);
         return opernInfoDTOList;
     }
 
     /**
      * 搜索曲谱
+     *
      * @param searchParameter 搜索参数 曲谱名称 曲作者 词作者
-     * @param pageNum 分页页码
-     * @param pageSize 分页大小
+     * @param pageNum         分页页码
+     * @param pageSize        分页大小
      * @return 曲谱数据
      */
     @Override
     public List<OpernInfoDTO> searchOpernInfo(String searchParameter, int pageNum, int pageSize) {
         int start = pageNum * pageSize;
         int size = pageSize;
-        List<OpernInfoDTO> opernInfoDTOList = opernInfoDao.getOpernInfoBySearchParameter(searchParameter, start, size);
-        opernInfoDTOList.forEach(opernInfoDTO -> {
-            List<OpernPicInfoDO> opernPicInfoDOList = opernInfoDao.getOpernPicInfoById(opernInfoDTO.getId());
-            opernInfoDTO.setOpernPicInfoList(opernPicInfoDOList);
-        });
+        List<BaseOpernInfoDO> baseOpernInfoDOList = opernInfoDao.getOpernInfoBySearchParameter(searchParameter, start, size);
+        List<OpernInfoDTO> opernInfoDTOList = baseOpernInfo2OpernInfo(baseOpernInfoDOList);
+        return opernInfoDTOList;
+    }
+
+    /**
+     * list of BaseOpernInfoDO 2 list of OpernInfoDTO
+     */
+    private static List<OpernInfoDTO> baseOpernInfo2OpernInfo(List<BaseOpernInfoDO> baseOpernInfoDOList) {
+        ArrayList<OpernInfoDTO> opernInfoDTOList = new ArrayList<>();
+        for (BaseOpernInfoDO info : baseOpernInfoDOList) {
+            OpernInfoDTO opernInfo = info.getOpernInfoDTO();
+            OpernPicInfoDO opernPicInfo = info.getOpernPicInfoDO();
+            int index = opernInfoDTOList.indexOf(opernInfo);
+            if (index == -1) {
+                opernInfo.getOpernPicInfoList().add(opernPicInfo);
+                opernInfoDTOList.add(opernInfo);
+            } else {
+                opernInfoDTOList.get(index).getOpernPicInfoList().add(opernPicInfo);
+            }
+        }
         return opernInfoDTOList;
     }
 }
