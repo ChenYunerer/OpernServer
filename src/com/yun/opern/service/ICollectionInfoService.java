@@ -13,12 +13,21 @@ public interface ICollectionInfoService {
      * @param opernId 曲谱id
      * @return 是否成功
      */
-    boolean addCollection(int userId, int opernId);
+    boolean addCollection(long userId, int opernId);
 
     /**
      * 获取收藏信息
      * @param userId 用户id
      * @return 收藏信息
      */
-    List<UserCollectionInfoDO> getCollection(int userId);
+    List<UserCollectionInfoDO> getCollection(long userId);
+
+    /**
+     * 查询用户对应的曲谱收藏是否存在
+     *
+     * @param userId  用户id
+     * @param opernId 曲谱id
+     * @return 是否存在
+     */
+    boolean isCollectionExist(long userId, int opernId);
 }

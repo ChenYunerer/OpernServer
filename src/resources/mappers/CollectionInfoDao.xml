@@ -10,7 +10,13 @@
     <select id="listUserCollectionInfo" resultType="UserCollectionInfoDO">
         SELECT *
         FROM tbl_user_collection_info
-        WHERE delflg = 1
+        WHERE delflg = 1 AND userId = #{userId}
+    </select>
+
+    <select id="getUserCollectionInfo" resultType="UserCollectionInfoDO">
+        SELECT *
+        FROM tbl_user_collection_info
+        WHERE delflg = 1 AND userId = #{userId} AND opernId = #{opernId}
     </select>
 
 </mapper>

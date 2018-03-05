@@ -2,8 +2,8 @@ package com.yun.opern.controller;
 
 import com.yun.opern.model.DO.UserCollectionInfoDO;
 import com.yun.opern.model.DTO.req.AddCollectionReq;
-import com.yun.opern.model.DTO.res.BaseResponseDTO;
 import com.yun.opern.model.DTO.req.GetCollectionReq;
+import com.yun.opern.model.DTO.res.BaseResponseDTO;
 import com.yun.opern.service.ICollectionInfoService;
 import com.yun.opern.service.IOpernInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/collection")
 public class CollectionController {
-
 
     @Autowired
     private ICollectionInfoService collectionInfoService;
@@ -32,7 +31,7 @@ public class CollectionController {
     @ResponseBody
     public BaseResponseDTO addCollection(@RequestBody AddCollectionReq request) {
         BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-        int userId = request.getUserId();
+        long userId = request.getUserId();
         int opernId = request.getOpernId();
         if (userId == 0) {
             baseResponseDTO.setCode(2);
@@ -50,6 +49,12 @@ public class CollectionController {
             baseResponseDTO.setMessage("该曲谱不存在");
             return baseResponseDTO;
         }
+        boolean collected = collectionInfoService.isCollectionExist(userId, opernId);
+        if (collected) {
+            baseResponseDTO.setCode(2);
+            baseResponseDTO.setMessage("已收藏");
+            return baseResponseDTO;
+        }
         boolean success = collectionInfoService.addCollection(request.getUserId(), request.getOpernId());
         if (success) {
             baseResponseDTO.setCode(1);
@@ -63,6 +68,7 @@ public class CollectionController {
 
     /**
      * 查询收藏信息
+     *
      * @param request 请求参数
      * @return 收藏信息
      */
@@ -70,7 +76,7 @@ public class CollectionController {
     @ResponseBody
     public BaseResponseDTO<List<UserCollectionInfoDO>> getCollection(@RequestBody GetCollectionReq request) {
         BaseResponseDTO<List<UserCollectionInfoDO>> baseResponseDTO = new BaseResponseDTO<>();
-        int userId = request.getUserId();
+        long userId = request.getUserId();
         if (userId == 0) {
             baseResponseDTO.setCode(2);
             baseResponseDTO.setMessage("请求参数有误");

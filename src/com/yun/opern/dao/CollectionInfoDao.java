@@ -22,7 +22,7 @@ public interface CollectionInfoDao {
      * @param opernId 收藏的曲谱id
      * @return 影响条数
      */
-    int saveCollectionInfo(@Param("userId") int userId, @Param("opernId") int opernId);
+    int saveCollectionInfo(@Param("userId") long userId, @Param("opernId") int opernId);
 
     /**
      * 获取用户所有收藏信息
@@ -30,5 +30,15 @@ public interface CollectionInfoDao {
      * @param userId 用户id
      * @return 收藏信息
      */
-    List<UserCollectionInfoDO> listUserCollectionInfo(int userId);
+    List<UserCollectionInfoDO> listUserCollectionInfo(long userId);
+
+
+    /**
+     * 获取用户收藏信息
+     *
+     * @param userId  用户id
+     * @param opernId 曲谱id
+     * @return 收藏信息
+     */
+    UserCollectionInfoDO getUserCollectionInfo(@Param("userId") long userId, @Param("opernId") int opernId);
 }
