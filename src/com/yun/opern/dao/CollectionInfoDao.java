@@ -1,6 +1,8 @@
 package com.yun.opern.dao;
 
+import com.yun.opern.model.DO.BaseOpernInfoDO;
 import com.yun.opern.model.DO.UserCollectionInfoDO;
+import com.yun.opern.model.DTO.res.OpernInfoDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,7 +32,7 @@ public interface CollectionInfoDao {
      * @param userId 用户id
      * @return 收藏信息
      */
-    List<UserCollectionInfoDO> listUserCollectionInfo(long userId);
+    List<BaseOpernInfoDO> listUserCollectionInfo(long userId);
 
 
     /**
@@ -41,4 +43,14 @@ public interface CollectionInfoDao {
      * @return 收藏信息
      */
     UserCollectionInfoDO getUserCollectionInfo(@Param("userId") long userId, @Param("opernId") int opernId);
+
+
+    /**
+     * 删除用户收藏信息
+     *
+     * @param userId  用户id
+     * @param opernId 曲谱id
+     * @return 影响条数
+     */
+    int removeUserCollectionInfo(@Param("userId") long userId, @Param("opernId") int opernId);
 }

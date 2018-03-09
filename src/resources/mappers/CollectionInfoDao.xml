@@ -4,13 +4,15 @@
 <mapper namespace="com.yun.opern.dao.CollectionInfoDao">
 
     <insert id="saveCollectionInfo">
-        INSERT INTO tbl_user_collection_info VALUES (#{userId}, #{opernId}, 1, now())
+        REPLACE INTO tbl_user_collection_info VALUES (#{userId}, #{opernId}, 1, now())
     </insert>
 
-    <select id="listUserCollectionInfo" resultType="UserCollectionInfoDO">
+    <select id="listUserCollectionInfo" resultType="BaseOpernInfoDO">
         SELECT *
-        FROM tbl_user_collection_info
-        WHERE delflg = 1 AND userId = #{userId}
+        FROM (SELECT B.*
+        FROM tbl_user_collection_info A INNER JOIN tbl_opern_info B ON A.opernId = B.id
+        WHERE A.userId = #{userId} AND A.delflg = 1 ORDER BY A.addTime DESC) C INNER JOIN tbl_opern_pic_info D ON C.id =
+        D.opernId ORDER BY C.addTime DESC, D.opernPicIndex ASC
     </select>
 
     <select id="getUserCollectionInfo" resultType="UserCollectionInfoDO">
@@ -18,5 +20,11 @@
         FROM tbl_user_collection_info
         WHERE delflg = 1 AND userId = #{userId} AND opernId = #{opernId}
     </select>
+
+    <update id="removeUserCollectionInfo">
+        UPDATE tbl_user_collection_info
+        SET delflg = '2'
+        WHERE userId = #{userId} AND opernId = #{opernId}
+    </update>
 
 </mapper>

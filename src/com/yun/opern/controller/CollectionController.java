@@ -3,7 +3,9 @@ package com.yun.opern.controller;
 import com.yun.opern.model.DO.UserCollectionInfoDO;
 import com.yun.opern.model.DTO.req.AddCollectionReq;
 import com.yun.opern.model.DTO.req.GetCollectionReq;
+import com.yun.opern.model.DTO.req.RemoveCollectionReq;
 import com.yun.opern.model.DTO.res.BaseResponseDTO;
+import com.yun.opern.model.DTO.res.OpernInfoDTO;
 import com.yun.opern.service.ICollectionInfoService;
 import com.yun.opern.service.IOpernInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,18 +76,47 @@ public class CollectionController {
      */
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseDTO<List<UserCollectionInfoDO>> getCollection(@RequestBody GetCollectionReq request) {
-        BaseResponseDTO<List<UserCollectionInfoDO>> baseResponseDTO = new BaseResponseDTO<>();
+    public BaseResponseDTO<List<OpernInfoDTO>> getCollection(@RequestBody GetCollectionReq request) {
+        BaseResponseDTO<List<OpernInfoDTO>> baseResponseDTO = new BaseResponseDTO<>();
         long userId = request.getUserId();
         if (userId == 0) {
             baseResponseDTO.setCode(2);
             baseResponseDTO.setMessage("请求参数有误");
             return baseResponseDTO;
         }
-        List<UserCollectionInfoDO> userCollectionInfoDOList = collectionInfoService.getCollection(userId);
+        List<OpernInfoDTO> opernInfoDTOList = collectionInfoService.getCollection(userId);
         baseResponseDTO.setCode(1);
         baseResponseDTO.setMessage("查询成功");
-        baseResponseDTO.setData(userCollectionInfoDOList);
+        baseResponseDTO.setData(opernInfoDTOList);
+        return baseResponseDTO;
+    }
+
+
+    /**
+     * 删除收藏信息
+     *
+     * @param request 请求参数
+     * @return 返回值
+     */
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponseDTO removeCollection(@RequestBody RemoveCollectionReq request) {
+        BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
+        long userId = request.getUserId();
+        int opernId = request.getOpernId();
+        if (userId == 0) {
+            baseResponseDTO.setCode(2);
+            baseResponseDTO.setMessage("请求参数有误");
+            return baseResponseDTO;
+        }
+        if (opernId == 0) {
+            baseResponseDTO.setCode(2);
+            baseResponseDTO.setMessage("请求参数有误");
+            return baseResponseDTO;
+        }
+        collectionInfoService.removeCollection(userId, opernId);
+        baseResponseDTO.setCode(1);
+        baseResponseDTO.setMessage("删除成功");
         return baseResponseDTO;
     }
 }

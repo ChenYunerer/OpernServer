@@ -81,7 +81,7 @@ public class OpernInfoServiceImpl implements IOpernInfoService {
     /**
      * list of BaseOpernInfoDO 2 list of OpernInfoDTO
      */
-    private static List<OpernInfoDTO> baseOpernInfo2OpernInfo(List<BaseOpernInfoDO> baseOpernInfoDOList) {
+    public static List<OpernInfoDTO> baseOpernInfo2OpernInfo(List<BaseOpernInfoDO> baseOpernInfoDOList) {
         ArrayList<OpernInfoDTO> opernInfoDTOList = new ArrayList<>();
         for (BaseOpernInfoDO info : baseOpernInfoDOList) {
             OpernInfoDTO opernInfo = info.getOpernInfoDTO();

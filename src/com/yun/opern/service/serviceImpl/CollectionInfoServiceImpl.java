@@ -1,7 +1,9 @@
 package com.yun.opern.service.serviceImpl;
 
 import com.yun.opern.dao.CollectionInfoDao;
+import com.yun.opern.model.DO.BaseOpernInfoDO;
 import com.yun.opern.model.DO.UserCollectionInfoDO;
+import com.yun.opern.model.DTO.res.OpernInfoDTO;
 import com.yun.opern.service.ICollectionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +36,9 @@ public class CollectionInfoServiceImpl implements ICollectionInfoService {
      * @return 收藏信息
      */
     @Override
-    public List<UserCollectionInfoDO> getCollection(long userId) {
-        List<UserCollectionInfoDO> userCollectionInfoList = collectionInfoDao.listUserCollectionInfo(userId);
-        return userCollectionInfoList;
+    public List<OpernInfoDTO> getCollection(long userId) {
+        List<BaseOpernInfoDO> baseOpernInfoDOList = collectionInfoDao.listUserCollectionInfo(userId);
+        return OpernInfoServiceImpl.baseOpernInfo2OpernInfo(baseOpernInfoDOList);
     }
 
     /**
@@ -51,4 +53,18 @@ public class CollectionInfoServiceImpl implements ICollectionInfoService {
         UserCollectionInfoDO userCollectionInfo = collectionInfoDao.getUserCollectionInfo(userId, opernId);
         return userCollectionInfo != null;
     }
+
+    /**
+     * 删除用户的曲谱收藏
+     *
+     * @param userId  用户id
+     * @param opernId 曲谱id
+     * @return 是否成功
+     */
+    @Override
+    public boolean removeCollection(long userId, int opernId) {
+        collectionInfoDao.removeUserCollectionInfo(userId, opernId);
+        return true;
+    }
+
 }

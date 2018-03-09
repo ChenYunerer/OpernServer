@@ -3,16 +3,16 @@ package com.yun.opern.model.DO;
 import java.sql.Timestamp;
 
 public class UserCollectionInfoDO {
-    private int userId;  //用户id
+    private long userId;  //用户id
     private int opernId;  //曲谱id 非第三方id
     private int delflg;  //删除状态 1 正常 2 删除
     private Timestamp addTime;  //添加时间
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
