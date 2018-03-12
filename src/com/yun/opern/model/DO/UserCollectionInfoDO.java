@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class UserCollectionInfoDO {
     private long userId;  //用户id
     private int opernId;  //曲谱id 非第三方id
-    private int delflg;  //删除状态 1 正常 2 删除
     private Timestamp addTime;  //添加时间
 
     public long getUserId() {
@@ -24,14 +23,6 @@ public class UserCollectionInfoDO {
         this.opernId = opernId;
     }
 
-    public int getDelflg() {
-        return delflg;
-    }
-
-    public void setDelflg(int delflg) {
-        this.delflg = delflg;
-    }
-
     public Timestamp getAddTime() {
         return addTime;
     }
@@ -45,8 +36,7 @@ public class UserCollectionInfoDO {
         return "UserCollectionInfoDO{" +
                 "userId=" + userId +
                 ", opernId=" + opernId +
-                ", delflg=" + delflg +
-                ", addTime='" + addTime + '\'' +
+                ", addTime=" + addTime +
                 '}';
     }
 }
